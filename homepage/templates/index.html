@@ -1,0 +1,373 @@
+<%inherit file="base.htm" />
+
+<%block name="content">
+<section id="league">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form id="PredictForm" action="/index" role="form" method="POST">${ csrf_input}
+                    <div class="row">
+                        <div class="col-3">
+                            <!-- SELECT YOUR TEAM MEMBERS -->
+                            <h2>Your Team</h2>
+                            <% count = 0 %>
+                            %for field in form:
+                                %if "Opposing" not in field.label:
+                                    <div class="form-group">
+                                        ${ field.label }
+                                        <div class="selectContainer">
+                                            <%
+                                            count = count + 1
+                                            selected = "selected_champ_img" + str(count)
+                                            selected_id = "SelectedChampion" + str(count)
+                                            %>
+                                                <img class="${ selected } selected_champ" src="${ STATIC_URL }homepage/media/helmet.png" />
+                                                <button type="button" class="btn btn-dark" id="${ selected_id }">Select Champion</button>
+                                        </div>
+                                        <div class="hidden">
+                                            ${ field }
+                                        </div>
+                                    </div>
+
+                                %endif
+                            %endfor
+                        </div>
+                        <div class="col-6">
+                            <!-- SELECTION PROCESS -->
+                            <div class="selection_space">
+                                <% count2 = 0%>
+                                %for field in form:
+                                    <%
+                                    count2 = count2 + 1
+                                    champ_menu = "champ_menu" + str(count2)
+                                    %>
+
+                                    <ul class="scrollable-menu ${ champ_menu } hidden">
+                                        <h2>Select ${ field.label }</h2>
+                                        %for x,y in form.fields['Champion1'].choices:
+                                            <%
+                                                num = x
+                                                name = y
+                                                name_url = name.replace(" ", "")
+
+                                                if num == "7":
+                                                    name_url = "Leblanc"
+                                                if num == "31":
+                                                    name_url = "Chogath"
+                                                if num == "36":
+                                                    name_url = "DrMundo"
+                                                if num == "62":
+                                                    name_url = "MonkeyKing"
+                                                if num == "96":
+                                                    name_url = "KogMaw"
+                                                if num == "121":
+                                                    name_url = "Khazix"
+                                                if num == "161":
+                                                    name_url = "Velkoz"
+                                                if num == "421":
+                                                    name_url = "RekSai"
+                                                if num == 0:
+                                                    url = STATIC_URL + "homepage/media/helmet.png"
+                                                else:
+                                                    url = "http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/" + name_url + ".png"
+                                            %>
+                                            <li>
+                                                <a href="" title="${ num }" field="${ field.label }" class="selection">
+                                                    <img src="${ url }">
+                                                    <p>${ name }</p>
+                                                </a>
+                                            </li>
+                                        %endfor
+                                    </ul>
+                                %endfor
+                            </div>
+
+                        </div>
+                        <div class="col-3">
+                            <!-- SELECT YOUR TEAM MEMBERS -->
+                            <h2>Your Team</h2>
+                            <% count2 = 4 %>
+                            %for field in form:
+                                %if "Opposing" in field.label:
+                                    <div class="form-group">
+                                        ${ field.label }
+                                        <div class="selectContainer">
+                                            <%
+                                            count2 = count2 + 1
+                                            selected2 = "selected_champ_img" + str(count2)
+                                            selected_id2 = "SelectedChampion" + str(count2)
+                                            %>
+                                                <img class="${ selected2 } selected_champ" src="${ STATIC_URL }homepage/media/helmet.png" />
+                                                <button type="button" class="btn btn-dark" id="${ selected_id2 }">Select Champion</button>
+                                        </div>
+                                        <div class="hidden">
+                                            ${ field }
+                                        </div>
+                                    </div>
+
+                                %endif
+                            %endfor
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-dark" value="Generate Recommendation">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="recommendations" style="display:none;">
+                    <div id="accordion" role="tablist">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="heading1">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                        Recommendation #1
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 rec1_image">
+                                            <img id="Rec1_img" class="img-fluid" src="http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/Annie.png" />
+                                        </div>
+                                        <div class="col-2 rec_info">
+                                            <p id="Rec1_name">Annie</p>
+                                            <p id="Rec1_title">the Dark Child</p>
+                                            <img id="Rec1_tag1" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                            <img id="Rec1_tag2" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp.png" />
+                                            <p>Health: <span id="Rec1_hp"></span> (+<span id="Rec1_hp_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_damage.png" />
+                                            <p>Attack Damage: <span id="Rec1_attack_damage"></span> (+<span id="Rec1_attack_damage_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_speed.png" />
+                                            <p>Attack Speed: <span id="Rec1_attack_speed"></span> (+<span id="Rec1_attack_speed_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/movespeed.png" />
+                                            <p>Movement Speed: <span id="Rec1_move_speed"></span></p>
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp_regen.png" />
+                                            <p>Health Regen: <span id="Rec1_hp_regen"></span> (+<span id="Rec1_hp_regen_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/armor.png" />
+                                            <p>Armor: <span id="Rec1_armor"></span> (+<span id="Rec1_armor_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/spellblock.png" />
+                                            <p>Magic Resist: <span id="Rec1_spellblock"></span> (+<span id="Rec1_spellblock_perlevel"></span> per level)</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="heading2">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                                        Recommendation #2
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 rec2_image">
+                                            <img id="Rec2_img" class="img-fluid" src="http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/Annie.png" />
+                                        </div>
+                                        <div class="col-2 rec_info">
+                                            <p id="Rec2_name">Annie</p>
+                                            <p id="Rec2_title">the Dark Child</p>
+                                            <img id="Rec2_tag1" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                            <img id="Rec2_tag2" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp.png" />
+                                            <p>Health: <span id="Rec2_hp"></span> (+<span id="Rec2_hp_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_damage.png" />
+                                            <p>Attack Damage: <span id="Rec2_attack_damage"></span> (+<span id="Rec2_attack_damage_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_speed.png" />
+                                            <p>Attack Speed: <span id="Rec2_attack_speed"></span> (+<span id="Rec2_attack_speed_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/movespeed.png" />
+                                            <p>Movement Speed: <span id="Rec2_move_speed"></span></p>
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp_regen.png" />
+                                            <p>Health Regen: <span id="Rec2_hp_regen"></span> (+<span id="Rec2_hp_regen_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/armor.png" />
+                                            <p>Armor: <span id="Rec2_armor"></span> (+<span id="Rec2_armor_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/spellblock.png" />
+                                            <p>Magic Resist: <span id="Rec2_spellblock"></span> (+<span id="Rec2_spellblock_perlevel"></span> per level)</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="heading3">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                                        Recommendation #3
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 rec3_image">
+                                            <img id="Rec3_img" class="img-fluid" src="http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/Annie.png" />
+                                        </div>
+                                        <div class="col-2 rec_info">
+                                            <p id="Rec3_name">Annie</p>
+                                            <p id="Rec3_title">the Dark Child</p>
+                                            <img id="Rec3_tag1" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                            <img id="Rec3_tag2" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp.png" />
+                                            <p>Health: <span id="Rec3_hp"></span> (+<span id="Rec3_hp_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_damage.png" />
+                                            <p>Attack Damage: <span id="Rec3_attack_damage"></span> (+<span id="Rec3_attack_damage_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_speed.png" />
+                                            <p>Attack Speed: <span id="Rec3_attack_speed"></span> (+<span id="Rec3_attack_speed_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/movespeed.png" />
+                                            <p>Movement Speed: <span id="Rec3_move_speed"></span></p>
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp_regen.png" />
+                                            <p>Health Regen: <span id="Rec3_hp_regen"></span> (+<span id="Rec3_hp_regen_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/armor.png" />
+                                            <p>Armor: <span id="Rec3_armor"></span> (+<span id="Rec3_armor_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/spellblock.png" />
+                                            <p>Magic Resist: <span id="Rec3_spellblock"></span> (+<span id="Rec3_spellblock_perlevel"></span> per level)</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="heading4">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                                        Recommendation #4
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="heading4" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 rec4_image">
+                                            <img id="Rec4_img" class="img-fluid" src="http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/Annie.png" />
+                                        </div>
+                                        <div class="col-2 rec_info">
+                                            <p id="Rec4_name">Annie</p>
+                                            <p id="Rec4_title">the Dark Child</p>
+                                            <img id="Rec4_tag1" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                            <img id="Rec4_tag2" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp.png" />
+                                            <p>Health: <span id="Rec4_hp"></span> (+<span id="Rec4_hp_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_damage.png" />
+                                            <p>Attack Damage: <span id="Rec4_attack_damage"></span> (+<span id="Rec4_attack_damage_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_speed.png" />
+                                            <p>Attack Speed: <span id="Rec4_attack_speed"></span> (+<span id="Rec4_attack_speed_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/movespeed.png" />
+                                            <p>Movement Speed: <span id="Rec4_move_speed"></span></p>
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp_regen.png" />
+                                            <p>Health Regen: <span id="Rec4_hp_regen"></span> (+<span id="Rec4_hp_regen_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/armor.png" />
+                                            <p>Armor: <span id="Rec4_armor"></span> (+<span id="Rec4_armor_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/spellblock.png" />
+                                            <p>Magic Resist: <span id="Rec4_spellblock"></span> (+<span id="Rec4_spellblock_perlevel"></span> per level)</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="heading5">
+                                <h5 class="mb-0">
+                                    <a data-toggle="collapse" href="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                                        Recommendation #5
+                                    </a>
+                                </h5>
+                            </div>
+
+                            <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5" data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2 rec5_image">
+                                            <img id="Rec5_img" class="img-fluid" src="http://ddragon.leagueoflegends.com/cdn/7.24.1/img/champion/Annie.png" />
+                                        </div>
+                                        <div class="col-2 rec_info">
+                                            <p id="Rec5_name">Annie</p>
+                                            <p id="Rec5_title">the Dark Child</p>
+                                            <img id="Rec5_tag1" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                            <img id="Rec5_tag2" class="img-fluid" src="${ STATIC_URL }homepage/media/Mage.png" />
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp.png" />
+                                            <p>Health: <span id="Rec5_hp"></span> (+<span id="Rec5_hp_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_damage.png" />
+                                            <p>Attack Damage: <span id="Rec5_attack_damage"></span> (+<span id="Rec5_attack_damage_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/attack_speed.png" />
+                                            <p>Attack Speed: <span id="Rec5_attack_speed"></span> (+<span id="Rec5_attack_speed_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/movespeed.png" />
+                                            <p>Movement Speed: <span id="Rec5_move_speed"></span></p>
+                                        </div>
+                                        <div class="col-4 rec_stats">
+                                            <img src="${ STATIC_URL}homepage/media/hp_regen.png" />
+                                            <p>Health Regen: <span id="Rec5_hp_regen"></span> (+<span id="Rec5_hp_regen_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/armor.png" />
+                                            <p>Armor: <span id="Rec5_armor"></span> (+<span id="Rec5_armor_perlevel"></span> per level)</p>
+                                            <br />
+                                            <img src="${ STATIC_URL}homepage/media/spellblock.png" />
+                                            <p>Magic Resist: <span id="Rec5_spellblock"></span> (+<span id="Rec5_spellblock_perlevel"></span> per level)</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</%block>

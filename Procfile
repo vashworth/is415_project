@@ -1,0 +1,1 @@
+web: python manage.py dmp_collectstatic --overwrite; python -m whitenoise.compress staticfiles/homepage/styles; python -m whitenoise.compress staticfiles/homepage/scripts; python manage.py migrate; gunicorn is415_project.wsgi --log-file -
