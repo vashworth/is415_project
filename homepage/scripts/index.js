@@ -39,7 +39,7 @@
                 tag2 = champs_json[rec1]['fields']['tags_2']
 
                 $("#Rec1_tag1").attr('src', "/static/homepage/media/" + champs_json[rec1]['fields']['tags_1'] + "_white.png");
-                if (tag2 === ""){
+                if (tag2 === "None"){
                     $("#Rec1_tag2").hide();
                 } else {
                     $("#Rec1_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
@@ -71,7 +71,7 @@
                 tag2 = champs_json[rec2]['fields']['tags_2']
 
                 $("#Rec2_tag1").attr('src', "/static/homepage/media/" + champs_json[rec2]['fields']['tags_1'] + "_white.png");
-                if (tag2 === ""){
+                if (tag2 === "None"){
                     $("#Rec2_tag2").hide();
                 } else {
                     $("#Rec2_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
@@ -103,7 +103,7 @@
                 tag2 = champs_json[rec3]['fields']['tags_2']
 
                 $("#Rec3_tag1").attr('src', "/static/homepage/media/" + champs_json[rec3]['fields']['tags_1'] + "_white.png");
-                if (tag2 === ""){
+                if (tag2 === "None"){
                     $("#Rec3_tag2").hide();
                 } else {
                     $("#Rec3_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
@@ -135,7 +135,7 @@
                 tag2 = champs_json[rec4]['fields']['tags_2']
 
                 $("#Rec4_tag1").attr('src', "/static/homepage/media/" + champs_json[rec4]['fields']['tags_1'] + "_white.png");
-                if (tag2 === ""){
+                if (tag2 === "None"){
                     $("#Rec3_tag2").hide();
                 } else {
                     $("#Rec4_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
@@ -167,7 +167,7 @@
                 tag2 = champs_json[rec5]['fields']['tags_2']
 
                 $("#Rec5_tag1").attr('src', "/static/homepage/media/" + champs_json[rec5]['fields']['tags_1'] + "_white.png");
-                if (tag2 === ""){
+                if (tag2 === "None"){
                     $("#Rec3_tag2").hide();
                 } else {
                     $("#Rec5_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
