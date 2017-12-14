@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .wrapper {
@@ -30,13 +31,32 @@ header {
     width: 100%;
     height: 100%;
     text-align: center;
-    padding-top: 5vw;
+    padding-top: 5.2vw;
 
 }
 
-.header-nav a{
+.header-nav a {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 15px;
+    margin-left: 15px;
+    text-transform: uppercase;
 
 }
+
+.header-nav a:nth-child(2) {
+    margin-right: 50px;
+}
+
+.header-nav a:hover {
+    text-decoration: none;
+    color: #5cb2b1;
+}
+
+.btn {
+    cursor: pointer;
+}
+
 main {
     margin: 0;
     padding: 15px;

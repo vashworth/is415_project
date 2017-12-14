@@ -8,30 +8,33 @@
                 <a href="/index">Recommender</a>
                 <a href="/analytics">Analytics</a>
             </div>
-
-
-            <h1 class="title">League Of Legends Tableau</h1>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div id="tableauViz"></div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <input class="btn btn-success tags" type="button" value="Export to PDF" onclick="exportPDF();">
-                        <input class="btn btn-danger tags" type="button" value="Revert All" onclick="revertAll();">
-                        <h2 class="title">Filter Tags 1</h2>
-                        <input class="btn btn-primary tags" type="button" value="Assassin" onclick="filterSingleValue('Assassin');">
-                        <input class="btn btn-primary tags" type="button" value="Fighter" onclick="filterSingleValue('Fighter');">
-                        <input class="btn btn-primary tags" type="button" value="Mage" onclick="filterSingleValue('Mage');">
-                        <input class="btn btn-primary tags" type="button" value="Marksman" onclick="filterSingleValue('Marksman');">
-                        <input class="btn btn-primary tags" type="button" value="Support" onclick="filterSingleValue('Support');">
-                        <input class="btn btn-primary tags" type="button" value="Tank" onclick="filterSingleValue('Tank');">
-                        <input class="btn btn-danger tags" type="button" value="Clear Filter" onclick="clearFilters();">
-                        <h2 class="title">Mark Selection</h2>
-                        <div id="markDetails"></div>
-                    </div>
-                </div>
         </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="title">League Of Legends Tableau</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div id="tableauViz"></div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <input class="btn btn-success tags" type="button" value="Export to PDF" onclick="exportPDF();">
+                    <input class="btn btn-danger tags" type="button" value="Revert All" onclick="revertAll();">
+                    <h2 class="title">Filter Tags 1</h2>
+                    <input class="btn btn-primary tags" type="button" value="Assassin" onclick="filterSingleValue('Assassin');">
+                    <input class="btn btn-primary tags" type="button" value="Fighter" onclick="filterSingleValue('Fighter');">
+                    <input class="btn btn-primary tags" type="button" value="Mage" onclick="filterSingleValue('Mage');">
+                    <input class="btn btn-primary tags" type="button" value="Marksman" onclick="filterSingleValue('Marksman');">
+                    <input class="btn btn-primary tags" type="button" value="Support" onclick="filterSingleValue('Support');">
+                    <input class="btn btn-primary tags" type="button" value="Tank" onclick="filterSingleValue('Tank');">
+                    <input class="btn btn-danger tags" type="button" value="Clear Filter" onclick="clearFilters();">
+                    <h2 class="title">Mark Selection</h2>
+                    <div id="markDetails"></div>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -10,16 +10,13 @@
 
     $("#PredictForm").submit(function(event) {
         event.preventDefault();
+        EasyLoading.show();
         $.ajax({
             data: $(this).serialize(),
             type: $(this).attr('method'),
             url: $(this).attr('action'),
             success: function(data) {
-                console.log("Success");
-                $(".recommendations").show();
                 data = JSON.parse(data);
-                console.log("DATA");
-                console.log(data);
                 rec1_id = data["Results"]['output1'][0]['Item 1'];
                 rec2_id = data["Results"]['output1'][0]['Item 2'];
                 rec3_id = data["Results"]['output1'][0]['Item 3'];
@@ -45,7 +42,8 @@
                     $("#Rec1_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
 
-                $("#collapse1").css("background-image", rec1_background)
+                $(".card1").css("background-image", rec1_background)
+                $("#Rec1_img_title").attr('src', champs_json[rec1]['fields']['img_url']);
                 $("#Rec1_img").attr('src', champs_json[rec1]['fields']['img_url']);
                 $("#Rec1_name").text(rec1_name);
                 $("#Rec1_title").text(champs_json[rec1]['fields']['title']);
@@ -77,7 +75,8 @@
                     $("#Rec2_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
 
-                $("#collapse2").css("background-image", rec2_background)
+                $(".card2").css("background-image", rec2_background)
+                $("#Rec2_img_title").attr('src', champs_json[rec2]['fields']['img_url']);
                 $("#Rec2_img").attr('src', champs_json[rec2]['fields']['img_url']);
                 $("#Rec2_name").text(rec2_name);
                 $("#Rec2_title").text(champs_json[rec2]['fields']['title']);
@@ -109,7 +108,8 @@
                     $("#Rec3_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
 
-                $("#collapse3").css("background-image", rec3_background)
+                $(".card3").css("background-image", rec3_background)
+                $("#Rec3_img_title").attr('src', champs_json[rec3]['fields']['img_url']);
                 $("#Rec3_img").attr('src', champs_json[rec3]['fields']['img_url']);
                 $("#Rec3_name").text(rec3_name);
                 $("#Rec3_title").text(champs_json[rec3]['fields']['title']);
@@ -141,7 +141,8 @@
                     $("#Rec4_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
 
-                $("#collapse4").css("background-image", rec4_background)
+                $(".card4").css("background-image", rec4_background)
+                $("#Rec4_img_title").attr('src', champs_json[rec4]['fields']['img_url']);
                 $("#Rec4_img").attr('src', champs_json[rec4]['fields']['img_url']);
                 $("#Rec4_name").text(rec4_name);
                 $("#Rec4_title").text(champs_json[rec4]['fields']['title']);
@@ -173,7 +174,8 @@
                     $("#Rec5_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
 
-                $("#collapse5").css("background-image", rec5_background)
+                $(".card5").css("background-image", rec5_background)
+                $("#Rec5_img_title").attr('src', champs_json[rec5]['fields']['img_url']);
                 $("#Rec5_img").attr('src', champs_json[rec5]['fields']['img_url']);
                 $("#Rec5_name").text(rec5_name);
                 $("#Rec5_title").text(champs_json[rec5]['fields']['title']);
@@ -190,6 +192,12 @@
                 $("#Rec5_armor_perlevel").text(champs_json[rec5]['fields']['stats_armorperlevel']);
                 $("#Rec5_spellblock").text(champs_json[rec5]['fields']['stats_spellblock']);
                 $("#Rec5_spellblock_perlevel").text(champs_json[rec5]['fields']['stats_spellblockperlevel']);
+
+                $(".recommendations").show();
+                EasyLoading.hide();
+                $('html, body').animate({
+                    scrollTop: $(".recommendations").offset().top
+                }, 1000);
 
             },
             error: function(error_message) {

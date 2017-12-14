@@ -8,17 +8,11 @@
     margin-right: 5px;
     padding: 3px;
     border-radius: 50%;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#77704a+0,c9c190+66,d5cea6+100 */
     background: #77704a;
-    /* Old browsers */
     background: -moz-linear-gradient(top, #77704a 0%, #c9c190 66%, #d5cea6 100%);
-    /* FF3.6-15 */
     background: -webkit-linear-gradient(top, #77704a 0%, #c9c190 66%, #d5cea6 100%);
-    /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #77704a 0%, #c9c190 66%, #d5cea6 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#77704a', endColorstr='#d5cea6', GradientType=0);
-    /* IE6-9 */
 }
 
 .selection_space {
@@ -32,9 +26,14 @@
     text-align: center;
 }
 
+.selection_space h2 {
+    color: #fff;
+}
+
 .scrollable-menu {
     padding-left: 0px;
 }
+
 .scrollable-menu li {
     display: inline-block;
     text-align: center;
@@ -47,24 +46,34 @@
     width: 5vw;
     padding: 3px;
     color: #fff;
-background: #111;
-border: 1px solid #000;
-border-right: 1px solid #353535;
-border-bottom: 1px solid #353535;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
+    background: #111;
+    border: 1px solid #000;
+    border-right: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.selection p {
+    color: #fff;
+}
+
+.selection:hover {
+    text-decoration: none;
+}
+.selection:hover p {
+    text-decoration: none;
+    color: #5cb2b1;
 }
 
 .selectContainer button {
     min-width: 155px;
-
 }
 
 .form-group {
     color: #fff;
 }
-
 
 .recommendations {
     padding-top: 50px;
@@ -91,4 +100,22 @@ border-radius: 5px;
 
 #collapse1 .card-body, #collapse2 .card-body, #collapse3 .card-body, #collapse4 .card-body, #collapse5 .card-body {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    background-color: rgba(255,255,255,.5);
+}
+
+.card-header a {
+    color:#031D26;
+}
+
+.card-header a:hover {
+    text-decoration: none;
+    color: #5cb2b1;
+}
+
+.title-img {
+    max-height: 40px;
+    margin-left: 10px;
 }
