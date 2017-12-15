@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 urlpatterns = [
     # the built-in Django administrator
     url(r'^admin/', admin.site.urls),
 
     # urls for any third-party apps go here
+    url(r'^riot.txt$', TemplateView.as_view(template_name="riot.txt", content_type="text/plain")),
 
     # the DMP router - this should be the last line in the list
     url('', include('django_mako_plus.urls')),
