@@ -2,10 +2,11 @@
     champs_json = JSON.parse(context.champs);
 
     function findChampion(find) {
-        var c = Object.keys(champs_json).filter(function(x) {
-            return champs_json[x].pk == find;
-        });
-        return c[0];
+        for (var ch in champs_json){
+            if (champs_json[ch]['fields'].name === find){
+                return ch;
+            }
+        }
     }
 
     $("#PredictForm").submit(function(event) {
@@ -17,16 +18,34 @@
             url: $(this).attr('action'),
             success: function(data) {
                 data = JSON.parse(data);
-                rec1_id = data["Results"]['output1'][0]['Item 1'];
-                rec2_id = data["Results"]['output1'][0]['Item 2'];
-                rec3_id = data["Results"]['output1'][0]['Item 3'];
-                rec4_id = data["Results"]['output1'][0]['Item 4'];
-                rec5_id = data["Results"]['output1'][0]['Item 5'];
-                rec1 = findChampion(rec1_id.toString());
-                rec2 = findChampion(rec2_id.toString());
-                rec3 = findChampion(rec3_id.toString());
-                rec4 = findChampion(rec4_id.toString());
-                rec5 = findChampion(rec5_id.toString());
+                a = [];
+
+                for (var s in data["Results"]["output1"][0]) {
+                    if (s.includes("Scored Probabilities")) {
+                        value = data["Results"]["output1"][0][s];
+                        s = s.split(/"/)[1];
+                        var champ = {
+                            name: s,
+                            probability: value
+                        };
+                        a.push(champ);
+                    }
+                }
+
+                function compare(a, b) {
+                    if (a.probability > b.probability)
+                        return -1;
+                    if (a.probability < b.probability)
+                        return 1;
+                    return 0;
+                }
+
+                as = a.sort(compare)
+                rec1 = findChampion(as[0].name);
+                rec2 = findChampion(as[1].name);
+                rec3 = findChampion(as[2].name);
+                rec4 = findChampion(as[3].name);
+                rec5 = findChampion(as[4].name);
 
                 // RECOMMENDATION #1
                 rec1_name = champs_json[rec1]['fields']['name'];
@@ -208,7 +227,7 @@
     });
 
     /***************** TEAM MEMBER 1 *****************/
-    $(document).on("click", "#SelectedChampion1", function(e){
+    $(document).on("click", "#SelectedChampion1", function(e) {
         e.preventDefault();
         $(".champ_menu1").show();
         $(".champ_menu2").hide();
@@ -221,7 +240,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu1 li > a", function(e){
+    $(document).on("click", ".champ_menu1 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img1").attr('src', image);
@@ -232,7 +251,7 @@
     });
 
     /***************** TEAM MEMBER 2 *****************/
-    $(document).on("click", "#SelectedChampion2", function(e){
+    $(document).on("click", "#SelectedChampion2", function(e) {
         e.preventDefault();
         $(".champ_menu2").show();
         $(".champ_menu1").hide();
@@ -245,7 +264,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu2 li > a", function(e){
+    $(document).on("click", ".champ_menu2 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img2").attr('src', image);
@@ -256,7 +275,7 @@
     });
 
     /***************** TEAM MEMBER 3 *****************/
-    $(document).on("click", "#SelectedChampion3", function(e){
+    $(document).on("click", "#SelectedChampion3", function(e) {
         e.preventDefault();
         $(".champ_menu3").show();
         $(".champ_menu2").hide();
@@ -269,7 +288,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu3 li > a", function(e){
+    $(document).on("click", ".champ_menu3 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img3").attr('src', image);
@@ -280,7 +299,7 @@
     });
 
     /***************** TEAM MEMBER 4 *****************/
-    $(document).on("click", "#SelectedChampion4", function(e){
+    $(document).on("click", "#SelectedChampion4", function(e) {
         e.preventDefault();
         $(".champ_menu4").show();
         $(".champ_menu2").hide();
@@ -293,7 +312,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu4 li > a", function(e){
+    $(document).on("click", ".champ_menu4 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img4").attr('src', image);
@@ -304,7 +323,7 @@
     });
 
     /***************** TEAM MEMBER 5 *****************/
-    $(document).on("click", "#SelectedChampion5", function(e){
+    $(document).on("click", "#SelectedChampion5", function(e) {
         e.preventDefault();
         $(".champ_menu5").show();
         $(".champ_menu2").hide();
@@ -317,7 +336,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu5 li > a", function(e){
+    $(document).on("click", ".champ_menu5 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img5").attr('src', image);
@@ -328,7 +347,7 @@
     });
 
     /***************** TEAM MEMBER 6 *****************/
-    $(document).on("click", "#SelectedChampion6", function(e){
+    $(document).on("click", "#SelectedChampion6", function(e) {
         e.preventDefault();
         $(".champ_menu6").show();
         $(".champ_menu2").hide();
@@ -341,7 +360,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu6 li > a", function(e){
+    $(document).on("click", ".champ_menu6 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img6").attr('src', image);
@@ -352,7 +371,7 @@
     });
 
     /***************** TEAM MEMBER 7 *****************/
-    $(document).on("click", "#SelectedChampion7", function(e){
+    $(document).on("click", "#SelectedChampion7", function(e) {
         e.preventDefault();
         $(".champ_menu7").show();
         $(".champ_menu2").hide();
@@ -365,7 +384,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu7 li > a", function(e){
+    $(document).on("click", ".champ_menu7 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img7").attr('src', image);
@@ -376,7 +395,7 @@
     });
 
     /***************** TEAM MEMBER 8 *****************/
-    $(document).on("click", "#SelectedChampion8", function(e){
+    $(document).on("click", "#SelectedChampion8", function(e) {
         e.preventDefault();
         $(".champ_menu8").show();
         $(".champ_menu2").hide();
@@ -389,7 +408,7 @@
         $(".champ_menu9").hide();
     });
 
-    $(document).on("click", ".champ_menu8 li > a", function(e){
+    $(document).on("click", ".champ_menu8 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img8").attr('src', image);
@@ -400,7 +419,7 @@
     });
 
     /***************** TEAM MEMBER 9 *****************/
-    $(document).on("click", "#SelectedChampion9", function(e){
+    $(document).on("click", "#SelectedChampion9", function(e) {
         e.preventDefault();
         $(".champ_menu9").show();
         $(".champ_menu2").hide();
@@ -413,7 +432,7 @@
         $(".champ_menu1").hide();
     });
 
-    $(document).on("click", ".champ_menu9 li > a", function(e){
+    $(document).on("click", ".champ_menu9 li > a", function(e) {
         var image = $(this).children('img').attr('src');
         var name = $(this).children('p').text();
         $(".selected_champ_img9").attr('src', image);
