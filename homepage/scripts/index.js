@@ -259,7 +259,7 @@
 
                 $("#Rec4_tag1").attr('src', "/static/homepage/media/" + champs_json[rec4]['fields']['tags_1'] + "_white.png");
                 if (tag2 === "None"){
-                    $("#Rec3_tag2").hide();
+                    $("#Rec4_tag2").hide();
                 } else {
                     $("#Rec4_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
@@ -318,7 +318,7 @@
 
                 $("#Rec5_tag1").attr('src', "/static/homepage/media/" + champs_json[rec5]['fields']['tags_1'] + "_white.png");
                 if (tag2 === "None"){
-                    $("#Rec3_tag2").hide();
+                    $("#Rec5_tag2").hide();
                 } else {
                     $("#Rec5_tag2").attr('src', "/static/homepage/media/" + tag2 + "_white.png");
                 }
