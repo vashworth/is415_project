@@ -51,7 +51,33 @@
                 rec1_name = champs_json[rec1]['fields']['name'];
                 offset = champs_json[rec1]['fields']['stats_attackspeedoffset'];
                 rec1_attack_speed = .625 / (parseFloat(offset) + 1);
-                rec1_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec1_name + "_0.jpg)"
+                rec1_splash = rec1_name.replace(/\s+/g, '');
+                if (rec1 === "7"){
+                    rec1_splash = "Leblanc";
+                }
+                if (rec1 === "31"){
+                    rec1_splash = "Chogath";
+                }
+                if (rec1 === "36"){
+                    rec1_splash = "DrMundo";
+                }
+                if (rec1 === "62"){
+                    rec1_splash = "MonkeyKing";
+                }
+                if (rec1 === "96"){
+                    rec1_splash = "KogMaw";
+                }
+                if (rec1 === "121"){
+                    rec1_splash = "Khazix";
+                }
+                if (rec1 === "161"){
+                    rec1_splash = "Velkoz";
+                }
+                if (rec1 === "421"){
+                    rec1_splash = "RekSai";
+                }
+
+                rec1_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec1_splash + "_0.jpg)"
                 tag2 = champs_json[rec1]['fields']['tags_2']
 
                 $("#Rec1_tag1").attr('src', "/static/homepage/media/" + champs_json[rec1]['fields']['tags_1'] + "_white.png");
@@ -84,7 +110,33 @@
                 rec2_name = champs_json[rec2]['fields']['name'];
                 offset = champs_json[rec2]['fields']['stats_attackspeedoffset'];
                 rec2_attack_speed = .625 / (parseFloat(offset) + 1);
-                rec2_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec2_name + "_0.jpg)"
+                rec2_splash = rec2_name.replace(/\s+/g, '');
+                if (rec2 === "7"){
+                    rec2_splash = "Leblanc";
+                }
+                if (rec2 === "31"){
+                    rec2_splash = "Chogath";
+                }
+                if (rec2 === "36"){
+                    rec2_splash = "DrMundo";
+                }
+                if (rec2 === "62"){
+                    rec2_splash = "MonkeyKing";
+                }
+                if (rec2 === "96"){
+                    rec2_splash = "KogMaw";
+                }
+                if (rec2 === "121"){
+                    rec2_splash = "Khazix";
+                }
+                if (rec2 === "161"){
+                    rec2_splash = "Velkoz";
+                }
+                if (rec2 === "421"){
+                    rec2_splash = "RekSai";
+                }
+
+                rec2_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec2_splash + "_0.jpg)"
                 tag2 = champs_json[rec2]['fields']['tags_2']
 
                 $("#Rec2_tag1").attr('src', "/static/homepage/media/" + champs_json[rec2]['fields']['tags_1'] + "_white.png");
@@ -117,7 +169,33 @@
                 rec3_name = champs_json[rec3]['fields']['name'];
                 offset = champs_json[rec3]['fields']['stats_attackspeedoffset'];
                 rec3_attack_speed = .625 / (parseFloat(offset) + 1);
-                rec3_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec3_name + "_0.jpg)"
+                rec3_splash = rec3_name.replace(/\s+/g, '');
+                if (rec3 === "7"){
+                    rec3_splash = "Leblanc";
+                }
+                if (rec3 === "31"){
+                    rec3_splash = "Chogath";
+                }
+                if (rec3 === "36"){
+                    rec3_splash = "DrMundo";
+                }
+                if (rec3 === "62"){
+                    rec3_splash = "MonkeyKing";
+                }
+                if (rec3 === "96"){
+                    rec3_splash = "KogMaw";
+                }
+                if (rec3 === "121"){
+                    rec3_splash = "Khazix";
+                }
+                if (rec3 === "161"){
+                    rec3_splash = "Velkoz";
+                }
+                if (rec3 === "421"){
+                    rec3_splash = "RekSai";
+                }
+
+                rec3_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec3_splash + "_0.jpg)"
                 tag2 = champs_json[rec3]['fields']['tags_2']
 
                 $("#Rec3_tag1").attr('src', "/static/homepage/media/" + champs_json[rec3]['fields']['tags_1'] + "_white.png");
@@ -150,7 +228,33 @@
                 rec4_name = champs_json[rec4]['fields']['name'];
                 offset = champs_json[rec4]['fields']['stats_attackspeedoffset'];
                 rec4_attack_speed = .625 / (parseFloat(offset) + 1);
-                rec4_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec4_name + "_0.jpg)"
+                rec4_splash = rec4_name.replace(/\s+/g, '');
+                if (rec4 === "7"){
+                    rec4_splash = "Leblanc";
+                }
+                if (rec4 === "31"){
+                    rec4_splash = "Chogath";
+                }
+                if (rec4 === "36"){
+                    rec4_splash = "DrMundo";
+                }
+                if (rec4 === "62"){
+                    rec4_splash = "MonkeyKing";
+                }
+                if (rec4 === "96"){
+                    rec4_splash = "KogMaw";
+                }
+                if (rec4 === "121"){
+                    rec4_splash = "Khazix";
+                }
+                if (rec4 === "161"){
+                    rec4_splash = "Velkoz";
+                }
+                if (rec4 === "421"){
+                    rec4_splash = "RekSai";
+                }
+
+                rec4_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec4_splash + "_0.jpg)"
                 tag2 = champs_json[rec4]['fields']['tags_2']
 
                 $("#Rec4_tag1").attr('src', "/static/homepage/media/" + champs_json[rec4]['fields']['tags_1'] + "_white.png");
@@ -183,7 +287,33 @@
                 rec5_name = champs_json[rec5]['fields']['name'];
                 offset = champs_json[rec5]['fields']['stats_attackspeedoffset'];
                 rec5_attack_speed = .625 / (parseFloat(offset) + 1);
-                rec5_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec5_name + "_0.jpg)"
+                rec5_splash = rec5_name.replace(/\s+/g, '');
+                if (rec5 === "7"){
+                    rec5_splash = "Leblanc";
+                }
+                if (rec5 === "31"){
+                    rec5_splash = "Chogath";
+                }
+                if (rec5 === "36"){
+                    rec5_splash = "DrMundo";
+                }
+                if (rec5 === "62"){
+                    rec5_splash = "MonkeyKing";
+                }
+                if (rec5 === "96"){
+                    rec5_splash = "KogMaw";
+                }
+                if (rec5 === "121"){
+                    rec5_splash = "Khazix";
+                }
+                if (rec5 === "161"){
+                    rec5_splash = "Velkoz";
+                }
+                if (rec5 === "421"){
+                    rec5_splash = "RekSai";
+                }
+
+                rec5_background = "url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + rec5_splash + "_0.jpg)"
                 tag2 = champs_json[rec5]['fields']['tags_2']
 
                 $("#Rec5_tag1").attr('src', "/static/homepage/media/" + champs_json[rec5]['fields']['tags_1'] + "_white.png");
